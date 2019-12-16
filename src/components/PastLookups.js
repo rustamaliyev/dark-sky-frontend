@@ -1,25 +1,36 @@
 import React, { Component } from "react";
 import axios from "axios";
-import groupBy from "json-groupby";
+import { animateScroll as scroller } from "react-scroll";
 
 class PastLookups extends Component {
   constructor(props) {
     super(props);
     this.state = {
       lookups: [],
-      days: []
+      days: [],
+      
     };
   }
-
+  
   componentDidMount() {
     axios.get("https://darksky-backend.herokuapp.com/all-lookups").then(response => {
+    //axios.get("http://localhost:3001/all-lookups").then(response => {
       this.setState({ lookups: response.data });
     });
   }
-
+  scrollTo() {
+    scroller.scrollTo('result-row', {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart'
+    })
+  }
   handleClick(id) {
+  
+    
     axios
       .get("https://darksky-backend.herokuapp.com/lookup-days", {
+      //.get("http://localhost:3001/lookup-days", {
         params: {
           id: id
         }
@@ -27,12 +38,15 @@ class PastLookups extends Component {
       .then(response => {
         this.setState({ days: response.data });
       });
-  }
+
+     
+
+    }
 
   render() {
     const { lookups } = this.state;
     const { days } = this.state;
-
+   
     return (
       <div class="row">
         <div class="col-md-12 p-5">
@@ -69,7 +83,7 @@ class PastLookups extends Component {
                   ))
                 : null}
 
-              <tr>
+              <tr id="result-row">
                 <td colSpan="4">
                   {days.length
                     ? days.map(day => (

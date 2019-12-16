@@ -18,6 +18,7 @@ class Lookup extends Component {
     const { lookupLat, lookupLong } = this.state;
 
     axios
+      //.post("http://localhost:3001/lookup", { lookupLat, lookupLong })
       .post("https://darksky-backend.herokuapp.com/lookup", { lookupLat, lookupLong })
       .then(res => {
         const lookupData = res.data;
@@ -32,6 +33,7 @@ class Lookup extends Component {
 
   handleChange(id) {
     axios
+      //.get("http://localhost:3001/lookup-days", {
       .get("https://darksky-backend.herokuapp.com/lookup-days", {
         params: {
           id: id
@@ -102,7 +104,7 @@ class Lookup extends Component {
                     class="form-control"
                     type="text"
                     name="lookupLat"
-                    value={lookupLat}
+                   
                     onChange={this.onChange}
                     placeholder="Enter Latitude"
                   />
@@ -114,7 +116,7 @@ class Lookup extends Component {
                     class="form-control"
                     type="text"
                     name="lookupLong"
-                    value={lookupLong}
+                   
                     onChange={this.onChange}
                     placeholder="Enter Longtitude"
                   />
