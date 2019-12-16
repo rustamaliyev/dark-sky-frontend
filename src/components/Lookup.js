@@ -18,7 +18,7 @@ class Lookup extends Component {
     const { lookupLat, lookupLong } = this.state;
 
     axios
-      .post("http://localhost:3001/lookup", { lookupLat, lookupLong })
+      .post("https://darksky-frontend.herokuapp.com/lookup", { lookupLat, lookupLong })
       .then(res => {
         const lookupData = res.data;
         this.setState({
@@ -32,7 +32,7 @@ class Lookup extends Component {
 
   handleChange(id) {
     axios
-      .get("http://localhost:3001/lookup-days", {
+      .get("https://darksky-frontend.herokuapp.com/lookup-days", {
         params: {
           id: id
         }

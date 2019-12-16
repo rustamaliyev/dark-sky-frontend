@@ -12,14 +12,14 @@ class PastLookups extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3001/all-lookups").then(response => {
+    axios.get("https://darksky-frontend.herokuapp.com/all-lookups").then(response => {
       this.setState({ lookups: response.data });
     });
   }
 
   handleClick(id) {
     axios
-      .get("http://localhost:3001/lookup-days", {
+      .get("https://darksky-frontend.herokuapp.com/lookup-days", {
         params: {
           id: id
         }
